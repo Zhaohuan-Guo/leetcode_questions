@@ -37,7 +37,7 @@ def write_to_file(file_name, data, type):
 def read_file(file_name):
     with open(file_name, 'r') as f:
         lines = f.readlines()
-        return [line.strip() for line in lines]
+        return [line.strip() for line in lines if line != '\n']
 
 def get_questions(file_name):
     temp_arr = []
@@ -50,7 +50,7 @@ def get_questions(file_name):
     with open(file_name, 'r') as f:
         lines = f.readlines()
         temp_arr += [int(line.strip()) for line in lines]
-        select_numbers = random.sample(temp_arr, 4)
+        select_numbers = random.sample(temp_arr, 6)
         print("today question:", select_numbers)
         for _ in select_numbers:
             write_to_file(past_que_file, get_time() + "  " + str(_), 'a')
@@ -86,7 +86,7 @@ while True:
         total_num = len(data)
         for arr in data:
             temp_arr = arr.split()
-            if temp_arr[1] == 1:
+            if temp_arr[1] == '1':
                 easy_num += 1
             else:
                 medium_num += 1
@@ -94,6 +94,7 @@ while True:
             easy question number: {easy_num}
             medium question number: {medium_num}
             done questions number: {len(read_file(past_que_file))}
+            rest questions number: {total_num - len(read_file(past_que_file))}
             rest easy question number: {len(read_file(easy_file))}
             rest medium question number: {len(read_file(medium_file))}'''
         print(pt)
@@ -111,4 +112,3 @@ while True:
         for arr in temp_arr:
             if arr != '' and arr.split()[0] == get_time():
                 print(arr)
-                print('1102, 1137')
