@@ -90,13 +90,13 @@ while True:
                 easy_num += 1
             else:
                 medium_num += 1
-        pt = f'''        total question number: {total_num}
-        easy question number: {easy_num}
-        medium question number: {medium_num}
-        done questions number: {len(read_file(past_que_file))}
-        rest questions number: {total_num - len(read_file(past_que_file))}
-        rest easy question number: {len(read_file(easy_file))}
-        rest medium question number: {len(read_file(medium_file))}'''
+        pt = f'''total question number: {total_num}
+easy question number: {easy_num}
+medium question number: {medium_num}
+done questions number: {len(read_file(past_que_file))}
+rest questions number: {total_num - len(read_file(past_que_file))}
+rest easy question number: {len(read_file(easy_file))}
+rest medium question number: {len(read_file(medium_file))}'''
         print(pt)
     if ipt == "get_question" or ipt == "gq":
         if len(read_file(easy_file)) == 0:
