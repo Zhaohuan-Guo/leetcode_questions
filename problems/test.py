@@ -5,7 +5,7 @@ freq_list = list(map(int, input().split()))
 heapq.heapify(freq_list)
 rs = 0
 
-def Huaffman_tree(list):
+def Huaffman_tree(freq_list):
     global rs
 
     while len(freq_list) > 1:
