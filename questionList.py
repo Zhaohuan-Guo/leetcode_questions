@@ -82,6 +82,8 @@ while True:
                 medium_list.append(que_num)
                 write_to_file(medium_file, que_num, 'a')
     if ipt == "info":
+        easy_num = 0
+        medium_num = 0
         data = read_file(data_file)
         total_num = len(data)
         for arr in data:
