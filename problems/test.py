@@ -1,21 +1,38 @@
-import heapq
-
-length = int(input())
-freq_list = list(map(int, input().split()))
-heapq.heapify(freq_list)
-rs = 0
-
-def Huaffman_tree(freq_list):
-    global rs
-
-    while len(freq_list) > 1:
-        freq1 = heapq.heappop(freq_list)
-        freq2 = heapq.heappop(freq_list)
-        new_freq = freq1 + freq2
-        rs += new_freq
-        heapq.heappush(freq_list, new_freq)
+# Definition for a binary tree node.
+from collections import deque
+from typing import Optional, List
 
 
-tree_root = Huaffman_tree(freq_list)
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+class Solution:
+    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        if not root:
+            return []
 
+        stack = [root]
+        result = []
+
+        while stack:
+            curr = stack.pop()
+            result.append(curr.val)
+
+            if curr.right:
+                stack.append(curr.right)
+            if curr.left:
+                stack.append(curr.left)
+
+        return result
+
+root = TreeNode(1)
+root.left = TreeNode(2)
+root.right = TreeNode(3)
+root.left.left = TreeNode(4)
+root.left.right = TreeNode(5)
+
+solution = Solution()
+rs = solution.preorderTraversal(root)
 print(rs)
