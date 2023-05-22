@@ -1,38 +1,16 @@
-# Definition for a binary tree node.
-from collections import deque
-from typing import Optional, List
+from typing import List
 
 
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
 class Solution:
-    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        if not root:
-            return []
+    def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
+        rs = []
+        for i, num in enumerate(nums):
+            nums[abs(num) - 1] = abs(nums[abs(num) - 1])*(-1)
 
-        stack = [root]
-        result = []
+        for i, num in enumerate(nums):
+            if num > 0:
+                rs.append(i + 1)
+        return rs
 
-        while stack:
-            curr = stack.pop()
-            result.append(curr.val)
-
-            if curr.right:
-                stack.append(curr.right)
-            if curr.left:
-                stack.append(curr.left)
-
-        return result
-
-root = TreeNode(1)
-root.left = TreeNode(2)
-root.right = TreeNode(3)
-root.left.left = TreeNode(4)
-root.left.right = TreeNode(5)
-
-solution = Solution()
-rs = solution.preorderTraversal(root)
-print(rs)
+s = Solution()
+rs = s.findDisappearedNumbers([4,3,2,7,8,2,3,1])
